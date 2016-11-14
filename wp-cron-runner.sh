@@ -1,5 +1,7 @@
 #!/bin/bash
 # Managed on GitHub: https://github.com/firefallpro/WordPress-Cron-Runner
+# $Id$ > wp-cron-runner.sh
+# '$Format:Last commit: %h by %aN at %cd%n%+w(76,6,9)%B$' > LAST_COMMIT
 
 # wp-cron-runner.sh
 # Handles cron jobs that run wp-cron.php for various WordPress installs that share the same server
