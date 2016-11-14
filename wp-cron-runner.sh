@@ -13,34 +13,29 @@
 # First argument must not be empty
 if [ -z "$1" ];
 then 
-	echo "\nwp-cron-runner.sh: Expecting URL: Empty argument supplied: Script Terminated \n" 
+	echo "\\nwp-cron-runner.sh: Expecting URL: Empty argument supplied: Script Terminated\\n" 
 	exit 1;
 fi 
 
 
-debug=${2:-false} # Default to false
-curlOption="-s -S" # Default is silent but still shows earlier
+verbose=${2:-s -S} # Default to silent: -s -S
 
-# Ensure debug is either false or true
+# Ensure verbose is either false or true
 # If true, set curlOption to be "-v" for verbose
-if [ "$debug" != false ]; then
-	if [ "$debug" != true ]; then
-		debug=false
-	elif [ "$debug" == true ]; then
-		curlOption="-v"
+if [ "$verbose" != "-s -S" ]; then
+	if [ "$verbose" != "-v" ]; then
+		verbose="-s -S"
+	else
+		echo "\\nwp-cron-runner.sh: cURL command set with -v: Verbose: verbose messages and cURL results will be displayed"
 	fi
-fi
-
-if [ "$debug" == true ]; then
-	echo "\nwp-cron-runner.sh: cURL command set with -v: Verbose: Debug messages and cURL results will be displayed"
 fi
 
 # This runs wp-cron.php with up to 60 seconds of entropy to prevent overlap with other sites
 delay=$(($RANDOM%60));
 
-if [ "$debug" == true ]; then
-	echo "wp-cron-runner.sh: Sleeping for $delay secs \n"
+if [ "$verbose" == "-v" ]; then
+	echo "wp-cron-runner.sh: Sleeping for $delay secs \\n"
 fi
 
 /bin/sleep $delay;
-/usr/bin/curl $curlOption $1/wp-cron.php?`date +\%s`;
+/usr/bin/curl $verbose $1/wp-cron.php?`date +\%s`;
