@@ -22,4 +22,4 @@ fi
 delay=$(($RANDOM%60));
 
 /bin/sleep $delay;
-/usr/bin/curl -v $1/wp-cron.php?`date +\%s`;
+/usr/bin/curl -s -S $1/wp-cron.php?`date +\%s`;
