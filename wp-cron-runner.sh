@@ -9,33 +9,46 @@
 # @link http://www.firefallpro.com/
 # @license http://www.firefallpro.com/license.txt
 # @copyright Copyright (c) 2016 Firefall, LLC
+ 
+verbose="-s -S"
+url=$1
 
-# First argument must not be empty
-if [ -z "$1" ];
-then 
-	echo "\\nwp-cron-runner.sh: Expecting URL: Empty argument supplied: Script Terminated\\n" 
-	exit 1;
-fi 
+# Look for v in options; stop script if other options are found
+while getopts ":v" opt; do 
+	case $opt in
+		v) 
+			# v found, shift options
+			verbose="-v" 
+			;;
+		*) 
+			printf "\nwp-cron-runner: Unexpected flag found: Script Terminated\n\n"
+			exit 1
+			;;
+	esac
+done
 
+# Look for absolute url
+if [[ $verbose == "-v" ]]; then
+	shift $(($OPTIND-1))
+	url=$1
+fi
 
-verbose=${2:-s -S} # Default to silent: -s -S
+# Check if URL is empty
+if [ -z "$url" ]; then
+	printf "\nwp-cron-runner.sh: Expecting URL: Empty argument supplied: Script Terminated\n\n" 
+	exit 1
+fi
 
-# Ensure verbose is either false or true
-# If true, set curlOption to be "-v" for verbose
-if [ "$verbose" != "-s -S" ]; then
-	if [ "$verbose" != "-v" ]; then
-		verbose="-s -S"
-	else
-		echo "\\nwp-cron-runner.sh: cURL command set with -v: Verbose: verbose messages and cURL results will be displayed"
-	fi
+if [[ $verbose == "-v" ]]; then
+	printf "\nwp-cron-runner.sh: Attempting to run cURL command on $url"
 fi
 
 # This runs wp-cron.php with up to 60 seconds of entropy to prevent overlap with other sites
 delay=$(($RANDOM%60));
 
 if [ "$verbose" == "-v" ]; then
-	echo "wp-cron-runner.sh: Sleeping for $delay secs \\n"
+	printf "\nwp-cron-runner.sh: Sleeping for $delay secs \n\n"
 fi
 
 /bin/sleep $delay;
-/usr/bin/curl $verbose $1/wp-cron.php?`date +\%s`;
+/usr/bin/curl $verbose $url/wp-cron.php?`date +\%s`;
