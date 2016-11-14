@@ -2,9 +2,7 @@
 # Managed on GitHub: https://github.com/firefallpro/WordPress-Cron-Runner
 #
 # wp-cron-runner.sh
-# Handles cron jobs that run wp-cron.php for various WordPress installs that share the same server
-# by adding a random delay to reduce possible performance costs that would be incurred by running
-# scripts concurrently. The script also appends a timestamp to prevent caching if any caching service is used.
+# This shell script handles cron jobs that run wp-cron.php for various WordPress installs that share the same server, by adding a random (up to 60 second) delay to reduce possible performance costs that would be incurred by running scripts concurrently. The script also appends a timestamp to prevent caching if any caching service is used i.e. via CloudFlare or NGINX.
 #
 # @version 0.0.2, 2016-11-11
 # @author Scott Park <scott@firefallpro.com>, Aric Ng <aric@firefallpro.com>
