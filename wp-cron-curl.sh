@@ -1,4 +1,5 @@
 #!/bin/bash
+# Managed on GitHub: https://github.com/firefallpro/WordPress-Cron-Runner
 
 if [ -z "$1" ];
 then 
