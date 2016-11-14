@@ -1,6 +1,5 @@
 #!/bin/bash
 # Managed on GitHub: https://github.com/firefallpro/WordPress-Cron-Runner
-# $Id$ > wp-cron-runner.sh
 #
 # wp-cron-runner.sh
 # Handles cron jobs that run wp-cron.php for various WordPress installs that share the same server
