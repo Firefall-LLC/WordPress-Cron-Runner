@@ -22,6 +22,7 @@ debug=${2:-false} # Default to false
 curlOption="-s -S" # Default is silent but still shows earlier
 
 # Ensure debug is either false or true
+# If true, set curlOption to be "-v" for verbose
 if [ "$debug" != false ]; then
 	if [ "$debug" != true ]; then
 		debug=false
@@ -29,12 +30,10 @@ if [ "$debug" != false ]; then
 		curlOption="-v"
 	fi
 fi
+
 if [ "$debug" == true ]; then
 	echo "\nwp-cron-runner.sh: cURL command set with -v: Verbose: Debug messages and cURL results will be displayed"
 fi
-#else
-#	echo "\nwp-cron-runner.sh: cURL command set with -s -S: Silent with an exception for errors"
-#fi
 
 # This runs wp-cron.php with up to 60 seconds of entropy to prevent overlap with other sites
 delay=$(($RANDOM%60));
