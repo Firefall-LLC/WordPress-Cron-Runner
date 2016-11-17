@@ -3,6 +3,7 @@
 #
 # wp-cron-runner.sh
 # This shell script handles cron jobs that run wp-cron.php for various WordPress installs that share the same server, by adding a random (up to 60 second) delay to reduce possible performance costs that would be incurred by running scripts concurrently. The script also appends a timestamp to prevent caching if any caching service is used i.e. via CloudFlare or NGINX.
+# i.e. /usr/local/bin/wp-cron-runner.sh http://dev.woofmints.com/wp-cron.php
 #
 # @version 0.0.3, 2016-11-11
 # @author Scott Park <scott@firefallpro.com>, Aric Ng <aric@firefallpro.com>
@@ -51,4 +52,4 @@ if [ "$verbose" == "-v" ]; then
 fi
 
 /bin/sleep $delay;
-/usr/bin/curl $verbose $url/wp-cron.php?`date +\%s`;
+/usr/bin/curl $verbose $url?`date +\%s`;
