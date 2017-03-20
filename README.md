@@ -2,7 +2,16 @@ This shell script handles cron jobs that run wp-cron.php for various WordPress i
 
 Script requires an absolute URL to wp-cron.php as its first argument. 
 
+```
+./wp-cron-runner.sh http://example.com/wp-cron.php
+```
 
 By default the script will include "-s -S" to be silent but not for errors. 
-"-v" will cause the script to be verbose. 
-"-h" and its argument ```<host>:<port>:<ip> example.com:80:10.0.1.1 ``` will set the --resolve curl option
+* "-v": Sets script in verbose mode, debug messages will be displayed
+* "-h": With argument in the format of ```<host>:<port>:<ip>``` i.e. ```example.com:80:10.0.1.1``` will call the given url at the specified ip address
+
+With all options set, the command should look like this:
+
+```
+./wp-cron-runner.sh -v -h example.com:80:10.0.1.1 http://example.com/wp-cron.php
+```
