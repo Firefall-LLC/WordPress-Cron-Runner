@@ -33,8 +33,9 @@ while getopts ":vh:" opt; do
 			;;
 		h)
 			# h found, set --resolve and its argument for curl
+			# argument should be similar to example.com:80:10.0.1.1
 			resolve="--resolve $OPTARG"
-			printf "wp-cron-runner: Set to force resolve of host: $resolve\n"
+			
 			offset=$((offset + 2))
 			;;
 		*) 
