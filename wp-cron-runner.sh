@@ -16,14 +16,12 @@ resolve=""
 offset=0
 url=$1
 
-printf "\n"
-
 # Look for v in options; stop script if other options are found
 while getopts ":vh:" opt; do 
 	case $opt in
 		v) 
 			# v found, shift options
-			printf "wp-cron-runner: Verbose mode\n"
+			printf "\nwp-cron-runner: Verbose mode\n\n"
 			verbose="-v" 
 			offset=$(($offset + 1))
 			;;
@@ -40,8 +38,6 @@ while getopts ":vh:" opt; do
 			;;
 	esac
 done
-
-printf "\n"
 
 # Look for absolute url after offset
 for ((c = 0; c < offset; c++))
