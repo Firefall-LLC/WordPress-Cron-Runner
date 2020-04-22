@@ -17,7 +17,7 @@ offset=0
 url=$1 # Get first argument
 
 print_usage() {
-	printf 'Usage:\n\n/usr/local/bin/wp-cron-runner.sh http://www.example.com/wp-cron.php\n/usr/local/bin/wp-cron-runner.sh -v -h <host>:<port>:<ip> http://example.com/wp-cron.php'
+	printf 'Usage:\n\n/usr/local/bin/wp-cron-runner.sh http://www.example.com/wp-cron.php\n\n/usr/local/bin/wp-cron-runner.sh -v -h <host>:<port>:<ip> http://example.com/wp-cron.php\n\n'
 }
 
 # Look for v in options; stop script if other options are found
@@ -42,8 +42,6 @@ while getopts ":vh:" opt; do
 			exit 1
 			;;
 	esac
-
-	print_usage
 done
 
 # Look for absolute url after offset
@@ -62,7 +60,7 @@ if [ -z "$url" ]; then
 fi
 
 if [[ $verbose == "-v" ]]; then
-	printf "\nwp-cron-runner.sh: Attempting to run cURL command on %s" "$url"
+	printf "\nwp-cron-runner.sh: Attempting to run cURL command on %s" "$url?$(date + %S)"
 
 	if [ -n "$resolve" ]; then
 		printf " with host %s" "$resolve"
