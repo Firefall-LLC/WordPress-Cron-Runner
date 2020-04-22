@@ -12,7 +12,7 @@
 # @copyright Copyright (c) 2020 Firefall, LLC
 
 verbose="-s -S"
-resolve=""
+resolve=()
 offset=0
 url=$1 # Get first argument
 
@@ -32,7 +32,7 @@ while getopts ":vh:" opt; do
 		h)
 			# h found, set --resolve and its argument for curl
 			# argument should be similar to example.com:80:10.0.1.1
-			resolve="--resolve $OPTARG"
+			resolve=(--resolve "$OPTARG")
 
 			offset=$((offset + 2))
 			;;
@@ -62,8 +62,8 @@ fi
 if [[ $verbose == "-v" ]]; then
 	printf "\nwp-cron-runner.sh: Attempting to run cURL command on %s" "$url?$(date +%S)"
 
-	if [ -n "$resolve" ]; then
-		printf " with host %s" "$resolve"
+	if [ ${#resolve[@]} -eq 2 ]; then
+		printf " with host %s" "${resolve[1]}"
 	fi
 fi
 
@@ -75,4 +75,4 @@ if [ "$verbose" == "-v" ]; then
 fi
 
 /bin/sleep $delay;
-/usr/bin/curl --ipv4 $verbose $resolve $url?$(date +%S);
+/usr/bin/curl --ipv4 $verbose "${resolve[@]}" "$url?$(date +%S)";
