@@ -60,7 +60,7 @@ if [ -z "$url" ]; then
 fi
 
 if [[ $verbose == "-v" ]]; then
-	printf "\nwp-cron-runner.sh: Attempting to run cURL command on %s" "$url?$(date + %S)"
+	printf "\nwp-cron-runner.sh: Attempting to run cURL command on %s" "$url?$(date +%S)"
 
 	if [ -n "$resolve" ]; then
 		printf " with host %s" "$resolve"
@@ -75,4 +75,4 @@ if [ "$verbose" == "-v" ]; then
 fi
 
 /bin/sleep $delay;
-/usr/bin/curl --ipv4 $verbose "$resolve" "$url?$(date + %S)";
+/usr/bin/curl --ipv4 $verbose "$resolve" "$url?$(date +%S)";
