@@ -75,4 +75,4 @@ if [ "$verbose" == "-v" ]; then
 fi
 
 /bin/sleep $delay;
-/usr/bin/curl --ipv4 $verbose "$resolve" "$url?$(date +%S)";
+/usr/bin/curl --ipv4 $verbose $resolve $url?$(date +%S);
