@@ -5,12 +5,12 @@
 # This shell script handles cron jobs that run wp-cron.php for various WordPress installs that share the same server, by adding a random (up to 60 second) delay to reduce possible performance costs that would be incurred by running scripts concurrently. The script also appends a timestamp to prevent caching if any caching service is used i.e. via CloudFlare or NGINX.
 # i.e. /usr/local/bin/wp-cron-runner.sh http://www.example.com/wp-cron.php
 #
-# @version 0.1.3, 2020-04-10
+# @version 0.1.4, 2020-04-22
 # @author Scott Park <scott@firefall.com>, Aric Ng <aric@firefall.com>
 # @link http://www.firefall.com/
-# @license http://www.firefall.com/license.txt
+# @license MIT License
 # @copyright Copyright (c) 2020 Firefall, LLC
- 
+
 verbose="-s -S"
 resolve=""
 offset=0
