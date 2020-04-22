@@ -7,7 +7,7 @@ Before running this script `define('DISABLE_WP_CRON', 'true');` must be added to
 Script requires an absolute URL to wp-cron.php as its first argument.
 
 ```
-./wp-cron-runner.sh http://example.com/wp-cron.php
+/usr/local/bin/wp-cron-runner.sh http://example.com/wp-cron.php
 ```
 
 By default the script will include "-s -S" to be silent but not for errors.
@@ -17,5 +17,5 @@ By default the script will include "-s -S" to be silent but not for errors.
 With all options set, the command should look like this:
 
 ```
-./wp-cron-runner.sh -v -h example.com:80:10.0.1.1 http://example.com/wp-cron.php
+/usr/local/bin/wp-cron-runner.sh -v -h example.com:80:10.0.1.1 http://example.com/wp-cron.php
 ```

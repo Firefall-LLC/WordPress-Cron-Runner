@@ -17,9 +17,7 @@ offset=0
 url=$1 # Get first argument
 
 print_usage() {
-	echo 'Usage
-/usr/local/bin/wp-cron-runner.sh http://www.example.com/wp-cron.php
-./wp-cron-runner.sh -v -h <host>:<port>:<ip> http://example.com/wp-cron.php'
+	printf 'Usage:\n\n/usr/local/bin/wp-cron-runner.sh http://www.example.com/wp-cron.php\n/usr/local/bin/wp-cron-runner.sh -v -h <host>:<port>:<ip> http://example.com/wp-cron.php'
 }
 
 # Look for v in options; stop script if other options are found
