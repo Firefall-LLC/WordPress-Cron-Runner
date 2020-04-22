@@ -59,7 +59,7 @@ url=$1
 # Check if URL is empty
 if [ -z "$url" ]; then
 	printf "\nwp-cron-runner.sh: Expecting URL: Empty argument supplied: Script Terminated\n\n"
-  print_usage
+	print_usage
 	exit 1
 fi
 
