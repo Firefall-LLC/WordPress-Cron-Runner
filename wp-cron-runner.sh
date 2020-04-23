@@ -74,5 +74,4 @@ if [ "$verbose" == "-v" ]; then
 	printf "\nwp-cron-runner.sh: Sleeping for %s secs \n\n" "$delay"
 fi
 
-/bin/sleep $delay;
-/usr/bin/curl --ipv4 $verbose "${resolve[@]}" "$url?$(date +%S)";
+/bin/sleep $delay && /usr/bin/curl --ipv4 $verbose "${resolve[@]}" "$url?$(date +%S)";
